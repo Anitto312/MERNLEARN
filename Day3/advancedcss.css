@@ -1,0 +1,9 @@
+.boxmodel{
+    margin: 5px;
+    padding: 10px;
+    background-color: palegreen;
+    border: solid 5px blueviolet;
+}
+h1{
+    margin-top: 10px;
+}
