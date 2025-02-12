@@ -1,0 +1,56 @@
+.content2{
+    position: relative;
+    display: inline-block;
+    height: 700px;
+    width: 100%;
+}
+.content{
+    color: brown;
+    height: 250px;
+    width: 70%;
+    left: 20%;
+    top: 100px;
+    float: right;
+    display: block;
+    background-color: rgb(96, 134, 13,0.24);
+    position: absolute;
+    z-index: 2;
+}
+img{
+    display: block;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+}
+body{
+    background-color: rgb(5, 80, 112);
+
+}
+form{
+    text-align: center;
+    height: 450px;
+    width: 450px;
+    left: 50%;
+    margin: 20px;
+    padding: 20px;
+}
+.div-login{
+    background-color: rgb(190, 211, 214);
+    height: 100%;
+    width: 50%;
+    align-items: center;
+    padding: 20px;
+}
+input{
+    padding: 10px;
+    margin: 10px;
+}
+input[type="text"]{
+    border: 1px solid rgb(35, 176, 27);
+    border-radius: 10px;
+}
+input[type="password"]{
+    border: 1px solid rgb(35, 176, 27);
+    border-radius: 10px;
+}
