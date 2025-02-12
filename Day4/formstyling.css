@@ -1,0 +1,9 @@
+input[type="number"]{
+    border: 1px solid blueviolet;
+    border-radius: 30px;
+}
+
+input[type="text"]{
+    border: 1px solid rgb(35, 176, 27);
+    border-radius: 30px;
+}
