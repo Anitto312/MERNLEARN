@@ -54,3 +54,6 @@ input[type="password"]{
     border: 1px solid rgb(35, 176, 27);
     border-radius: 10px;
 }
+table{
+    float: left;
+}

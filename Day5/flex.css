@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+}
+header{
+    background-color: chocolate;
+}
+nav{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+    margin: 0;
+    background-color: chocolate;
+    padding: 2em;
+}
+.link{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.link:hover{
+    color: chocolate;
+    background-color: aliceblue;
+}
