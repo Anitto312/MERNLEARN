@@ -1,7 +1,7 @@
-async function asAw(){
-    setTimeout(function(){
-        console.log("hello");
-    },5000)
+// async function asAw(){
+//     setTimeout(function(){
+//         console.log("hello");
+//     },1000)
     
-}
-console.log(asAw())
+// }
+// console.log(asAw())
