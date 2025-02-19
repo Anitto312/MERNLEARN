@@ -1,0 +1,10 @@
+nav{
+    display: flex;
+    list-style-type: none;
+    background-color: chocolate;
+    color: aliceblue;
+    justify-content: space-evenly;
+    padding: 1rem;
+
+
+}
