@@ -4,7 +4,7 @@ function doublingUpNumber(num){
     return num*2
 }
 function slowfunction(num){
-    for(var i=0;i<100000;i++){
+    for(var i=0;i<10;i++){
         console.log(i);
     }
     return num*2
@@ -18,6 +18,7 @@ const UseMemo=()=>{
         backgroundColor:theme?"black":"white",
         color:theme?"white":"black"
     }
+
     return(
         <>
         <div style={Styling}>
