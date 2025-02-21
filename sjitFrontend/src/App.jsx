@@ -13,8 +13,10 @@ import UseState from "./components/hooks/usestate.jsx"
 import UseEffectAPI from "./components/hooks/UseEffectAPI.jsx"
 import UseRef from "./components/hooks/UseRef.jsx"
 import UseMemo from "./components/hooks/UseMemo.jsx"
+import UseCallback from "./components/hooks/UseCallback.jsx"
+import UseMemoise from "./components/hooks/UseMemoize.jsx"
 import {BrowserRouter,Routes,Route} from  'react-router-dom'
-
+import HoC from "./components/functional component/HoC/HoC.jsx"
 function App() {
   return (
     <main>
@@ -30,6 +32,9 @@ function App() {
           <Route path='/use-Effect-API' element = {<UseEffectAPI/>}></Route>
           <Route path='/use-Ref' element = {<UseRef />}></Route>
           <Route path='/use-Memo' element = {<UseMemo />}></Route>
+          <Route path='/use-Callback' element = {<UseCallback />}></Route>
+          <Route path='/use-Memoise' element = {<UseMemoise />}></Route>
+          <Route path="/HoC" element={<HoC/>}></Route>
           <Route path='/Gallery' element = {<Gallery/>}></Route>
           <Route path='/Signup' element = {<Signup/>}></Route>
       </Routes>
