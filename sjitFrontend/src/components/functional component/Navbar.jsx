@@ -7,6 +7,7 @@ const Navbar =()=>{
         <header>
             <nav>
                 <li><Link to='/'>Home,</Link></li>
+                <li><Link to='/Content'>Content</Link></li>
                 <li><Link to='/About'>About</Link></li>
                 <li><Link to='/Gallery'>Gallery</Link></li>
                 <div class ="dropdown" onClick={()=>showDropdown(!dropdown)}>

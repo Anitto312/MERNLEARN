@@ -17,6 +17,12 @@ import UseCallback from "./components/hooks/UseCallback.jsx"
 import UseMemoise from "./components/hooks/UseMemoize.jsx"
 import {BrowserRouter,Routes,Route} from  'react-router-dom'
 import HoC from "./components/functional component/HoC/HoC.jsx"
+import Content from "./components/functional component/content.jsx"
+import StudentResults from "./components/functional component/StudentResults.jsx"
+import Faculty from "./components/functional component/Faculty.jsx"
+import Exam from "./components/functional component/Exam.jsx"
+import CoE from "./components/functional component/CoE.jsx"
+
 function App() {
   return (
     <main>
@@ -34,6 +40,11 @@ function App() {
           <Route path='/use-Memo' element = {<UseMemo />}></Route>
           <Route path='/use-Callback' element = {<UseCallback />}></Route>
           <Route path='/use-Memoise' element = {<UseMemoise />}></Route>
+          <Route path="/Content" element={<Content/>}></Route>
+          {/* <Route path="/result" element={<StudentResults/>}></Route> */}
+          {/* <Route path="/Faculty" element={<Faculty/>}></Route> */}
+          <Route path="/Exam" element={<Exam cgpa="10" sgpa="10"/>}></Route>
+          {/* <Route path="/CoE" element={<CoE/>}></Route> */}
           <Route path="/HoC" element={<HoC/>}></Route>
           <Route path='/Gallery' element = {<Gallery/>}></Route>
           <Route path='/Signup' element = {<Signup/>}></Route>
