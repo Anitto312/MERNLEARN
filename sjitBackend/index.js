@@ -1,77 +1,84 @@
 const express = require("express");
-const mdb = require('mongoose');
-const dotenv = require('dotenv');
-const bcrypt =require('bcrypt');
-const Signup = require('./models/signupSchema.js')
+const dotenv = require("dotenv");
+const mdb = require("mongoose");
+const bcrypt=require('bcrypt');
+const cors=require('cors');
+const Signup = require("./models/signupSchema");
+dotenv.config();
+
 
 const app = express();
+app.use(cors())
 app.use(express.json())
 const PORT = 3127;
-dotenv.config()
 
-console.log(process.env.MONGODB_URL)
+// console.log(process.env.MONGODB_URL);
 
-mdb.connect(process.env.MONGODB_URL).then(() => {
-    console.log("Mongo DB connection successfull")
-}).catch((err) => {
-    console.log("Check your connection string",err)
+mdb
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    console.log("Connection sucessfull");
+  })
+  .catch((err) => {
+    console.log("Check your connection string", err);
+  });
+
+app.get("/", (req, res) => {
+    console.log("first")
+  res.send("<h1>BackEnd Server Active</h1>");
+});
+
+app.post("/signup", async(req, res) => {
+  try {
+    const {firstName,lastName,email,password,mobile} = req.body
+    const hashedpassword= await bcrypt.hash(password, 10);
+    const newSignup = new Signup({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: hashedpassword,
+      mobile: mobile,
+    })
+    newSignup.save();
+    console.log("Signup successful");
+    res.status(201).json({ message: "Signup Successful", isSignup: true });
+  } catch (err) {
+    console.log(err);
+    res.status(201).json({ message: "Signup unsuccessful", isSignup: false });
+  }
+});
+
+app.get('/getsignupdetails',(req,res)=>{
+  const signup = Signup.find();
+  res.send("signup details fetched");
 })
 
-app.get("/static",(req,res) => {
-    res.sendFile("C://Users//anitt//OneDrive//Desktop//Mern//index.html")
-})
-
-app.post("/signup",async(req,res) =>{
-    try{
-        console.log(req.body);
-        const {firstName,lastName,email,password,phoneNumber} = req.body
-        const hashPassword= await bcrypt.hash(password,10)
-        const newSignup = new Signup({
-            firstName:firstName,
-            lastName:lastName, 
-            email:email,
-            password:hashPassword,
-            phoneNumber:phoneNumber, 
-
-        })
-        newSignup.save()
-        console.log("Signup successful")
-        res.status(201).json({message:"signup successfull",isSignup : true})
+app.post('/login',async(req,res)=>{
+  console.log("welcome to login");
+  try{
+    const {email,password}=req.body;
+    const existingUser=await Signup.findOne({email :email});
+    console.log(existingUser);
+    if(existingUser){
+      const isValidpass= await bcrypt.compare(password,existingUser.password);
+      console.log(isValidpass)
+      if(isValidpass){
+        res.status(201).json({message:"Login successful", isLogin:true})
+      }
+      else{
+        res.status(201).json({message:"Invalid Password", isLogin:false});
+      }
     }
-    catch(error){
-        console.log(error)
-        res.status(201).json({message:"signup unsuccessfull",isSignup : false})
+    else{
+      res.status(201).json({message:"User not found!! Signup !!", isLogin:false})
     }
-})
-app.get('/getsignupdet',async(req,res)=>{
-    const signup=await Signup.find()
-    console.log(signup)
-    res.send("fetched")
-})
-app.post("/login",async(req,res)=>{
-    try{
-        const {email,password}=req.body;
-        const existinguser=await Signup.findOne({email:email})
-        console.log(existinguser);
-        if(existinguser){
-            const isValidPassword=await bcrypt.compare(password,existinguser.password)
-            console.log(isValidPassword);
-            if(isValidPassword){
-                res.status(201).json({message:"success",isLoggedIn:true})
-            }
-            else{
-                res.status(201).json({message:"success",isLoggedIn:false})
-            }
-        }
-        else{
-            res.status(201).json({message:"success",isLoggedIn:false})
-        }
-    }
-    catch(err){
-        console.log("Login error");  
-        res.status(201).json({message:"Login error",isLoggedIn : false})
-    }
-
+  }
+  catch(error){
+    console.log("User not found!!! Signup First!!!")
+    res.status(201).json({message:"Login error", isLogin:false})
+  }
 })
 
-app.listen(PORT, () => console.log("Server Started successfully.",PORT));
+app.listen(PORT, () => {
+  console.log("Server started successfully");
+});

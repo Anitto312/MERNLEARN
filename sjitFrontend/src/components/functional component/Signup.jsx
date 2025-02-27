@@ -11,7 +11,7 @@ function Signup(event) {
   const [pass,setPass]=useState("");
   const [mobile,setMob]=useState();
   const handleSignup=()=>{
-    axios.post("http://localhost:3001/signup",{
+    axios.post("http://localhost:3127/signup",{
     firstName:firstName,
     lastName:lastName,
     email:email,
